@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:charity/additional_screen.dart';
 import 'package:charity/app_bar.dart';
 import 'package:charity/statics/constants.dart';
 import 'package:flutter/material.dart';
@@ -90,7 +91,7 @@ class _RegularCharityForm extends State<RegularCharityForm> {
               context,
               double.infinity,
               120.0,
-              SelectType(),
+              AdditionalForm(),
             ),
             SizedBox(
               height: ScreenUtil().setHeight(30.0),
