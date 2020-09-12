@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:charity/additional_screen.dart';
 import 'package:charity/app_bar.dart';
 import 'package:charity/statics/constants.dart';
 import 'package:flutter/material.dart';
@@ -40,8 +41,36 @@ class _AimedCharityFormState extends State<AimedCharityForm> {
         ),
         child: Column(
           children: [
-            imageFile == null ? imagePickerWidget() : Image.file(imageFile),
-
+            imageFile == null
+                ? imagePickerWidget()
+                : Stack(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(13.0),
+                        child: Image.file(
+                          imageFile,
+                          fit: BoxFit.cover,
+                          width: double.infinity,
+                          height: ScreenUtil().setHeight(350.0),
+                        ),
+                      ),
+                      Positioned(
+                        right: ScreenUtil().setWidth(10.0),
+                        top: ScreenUtil().setHeight(10.0),
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              imageFile = null;
+                            });
+                          },
+                          child: Icon(
+                            FontAwesomeIcons.timesCircle,
+                            color: vkHardGrey,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
             SizedBox(
               height: ScreenUtil().setHeight(30.0),
             ),
@@ -63,7 +92,7 @@ class _AimedCharityFormState extends State<AimedCharityForm> {
               context,
               double.infinity,
               120.0,
-              SelectType(),
+              AdditionalForm(),
             ),
           ],
         ),
